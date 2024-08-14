@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script>
+        var module=angular.module("myModule",[]);
+        var controller=module.controller("myController",function($scope,$http)
+        {
+          $scope.jsonRecordsAry=[];
+          $scope.doFetchAll=function()
+          {
+            let url="/angular-fetch-all-providers";
+            $http.get(url).then(done,fail);
+            function done(response)
+            {
+                $scope.jsonRecordsAry=response.data;
+            }
+            function fail(response)
+            {
+                alert(response.data);
+            }
+          }
+        })
+    </script>
+</head>
+<body ng-app="myModule" ng-controller="myController">
+    <center>
+        <input type="button" value="Fetch All Records" ng-click="doFetchAll();" >
+        <br><br>
+        <table width="700" border="1" rules="all">
+            <tr>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Name</th>
+                <th>Since</th>
+                <th>Service</th>
+                <th>Sub Service</th>
+                <th>Firm</th>
+                <th>Website</th>
+                <th>UID NO.</th>
+                <th>Pic</th>
+                <th>Specialization</th>
+            </tr>
+            <tr ng-repeat="obj in jsonRecordsAry">
+                <td>{{obj.email}}</td>
+                <td>{{obj.contact}}</td>
+                <td>{{obj.fname}}</td>
+                <td>{{obj.since}}</td>
+                <td>{{obj.service}}</td>
+                <td>{{obj.subservice}}</td>
+                <td>{{obj.firm}}</td>
+                <td>{{obj.website}}</td>
+                <td>{{obj.id}}</td>
+                <td>{{obj.idpic}}</td>
+                <td>{{obj.special}}</td>
+            </tr>
+        </table>
+    </center>
+    
+</body>
+</html>

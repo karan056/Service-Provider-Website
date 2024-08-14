@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+    </script>
+  <style>
+    .ok {
+      color: green;
+    }
+
+    .not-ok {
+      color: red;
+    }
+  </style>
+  <script>
+    $(document).ready(function () {
+      $("#floatingInput").blur(function () {
+        let obj = {
+
+          url: "/check-email",
+          data: {
+            kuchEmail: $("#floatingInput").val(),
+
+          }
+        }
+
+        $.ajax(obj).done(
+          function (resp) {
+
+            $("#errEmail").html(resp);
+            if (resp === "Email already exists")
+              $("#errEmail").removeClass("ok").addClass("not-ok");
+            else
+              $("#errEmail").addClass("ok").removeClass("not-ok");
+
+          }).fail(
+            function (err) {
+              alert("Error=" + err);
+            });
+      });
+
+      $("#btnnn").click(function () {
+        let email = $("#floatingInput").val();
+        let password = $("#signupPassword").val();
+        let userType = $("select[name='utype']").val();
+
+        let obj = {
+          url: "/signup",
+          method: "POST",
+          data: { floatingInput: email, signupPassword: password, utype: userType },
+        };
+
+        $.ajax(obj)
+          .done(function (resp) {
+            $("#signerr").html(resp).addClass("ok").removeClass("not-ok");
+          })
+          .fail(function (err) {
+            alert("Error=" + err);
+          });
+      });
+    });
+
+
+  </script>
+
+
+
+  <script>
+
+    $(document).ready(function () {
+      $("#login-email").blur(function () {
+        let obj = {
+
+          url: "/checkk-email",
+          data: {
+            kuchEmail: $("#login-email").val(),
+
+          }
+        }
+
+        $.ajax(obj).done(
+          function (resp) {
+
+            $("#errEmaill").html(resp);
+
+
+          }).fail(
+            function (err) {
+              alert("Error=" + err);
+            });
+      });
+
+      $("#login-btn").click(function () {
+        let email = $("#login-email").val();
+        let password = $("#loginPassword").val();
+
+        let obj = {
+          url: "/log",
+          method: "post",
+
+          data: { email: email, password: password },
+        };
+
+        $.ajax(obj)
+          .done(function (resp) {
+            if(resp== "Customer"){
+                location.href = "customer-dash.html";
+            } else if (resp=="Service Provider"){
+              location.href = "service-provider-dash.html";
+ 
+            } else alert(resp);
+          })
+          .fail(function (err) {
+            alert("Error=" + err);
+          });
+      });
+
+
+
+    });
+
+  </script>
+
+
+
+
+
+</head>
+
+<body>
+  <!-- <input type="button" class="btn btn-primary" value="Signup" data-bs-toggle="modal" data-bs-target="#signupModal">
+    <input type="button" class="btn btn-outline-danger" value="login" data-bs-toggle="modal" data-bs-target="#loginModal"> -->
+
+
+  <nav class="navbar" style="background-color: #E9BF77">
+
+
+
+
+    <form class="container-fluid justify-content-end">
+      <!-- ----------------------------sign-up button------------------------- -->
+
+      <button class="btn me-2" data-bs-toggle="modal" data-bs-target="#signupModal" type="button"
+        style="background-color: #213c53; color: #fbedd7">
+        Sign up
+      </button>
+
+      <!-- ----------------------------login button------------------------- -->
+      <button class="btn me-2" data-bs-toggle="modal" data-bs-target="#loginModal" type="button"
+        style="background-color: #213c53; color: #fbedd7">
+        Login
+      </button>
+    </form>
+  </nav>
+
+
+  <div class="container-fluid" style="
+        background-image: url(../pic/WhatsApp\ Image\ 2024-01-28\ at\ 12.40.06_659b8aef.jpg);
+        height: 92.8vh;
+        background-size: contain;
+        background-repeat: inherit;
+      "></div>
+
+
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background-color: #E9BF77">
+        <div class="modal-header">
+          <h1 class="singup-modal fs-5" id="exampleModalLabel">Singup Modal</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" name="floatingInput" id="floatingInput"
+                placeholder="name@example.com">
+              <label for="floatingInput">Email address</label>
+              <span id="errEmail">*</span>
+
+            </div>
+            <div class="form-floating">
+              <input type="password" class="form-control" id="signupPassword" placeholder="Password"
+                name="signupPassword">
+              <label for="signupPassword">Password</label>
+              <br>
+              <p>
+                <label for="utype" class="form-label">uType</label>
+                <select class="form-select" name="utype" id="utype" required>
+                  <option selected disabled value="">Choose...</option>
+                  <option value="Customer">Customer</option>
+                  <option value="Service Provider">Service Provider</option>
+                </select>
+              </p>
+
+              <center>
+                <input type="button" id="btnnn" class="btn" value="Signup"
+                  style="background-color: #213c53; color: #fbedd7">
+                <span id="signerr">*</span>
+              </center>
+
+
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="background-color: #E9BF77">
+        <div class="modal-header">
+          <h1 class="login-modal fs-5" id="exampleModalLabel">Login Modal</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="login-email" placeholder="name@example.com"
+                name="login-email">
+              <label for="login-email">Email address</label>
+              <span id="errEmaill">*</span>
+
+            </div>
+            <div class="form-floating">
+              <input type="password" class="form-control" id="loginPassword" placeholder="Password"
+                name="loginPassword">
+              <label for="loginPassword">Password</label>
+              <br>
+
+              <center>
+                <input type="button" id="login-btn" class="btn" value="Login"
+                  style="background-color: #213c53; color: #fbedd7">
+              </center>
+
+
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

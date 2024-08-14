@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+  ></script>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"
+  />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+    <script>
+        var module = angular.module("myModule", []);
+        var controller = module.controller("myController", function ($scope, $http) {
+            $scope.jsonRecordsAry = [];
+            $scope.selectedDetails = {}; 
+
+            $scope.doFetchAll = function () {
+                let url = "/fetch-all-provider";
+                $http.get(url).then(done, fail);
+                function done(response) {
+                    $scope.jsonRecordsAry = response.data;
+                    console.log(jsonRecordsAry);
+                }
+                function fail(response) {
+                    alert(response.data);
+                }
+            }
+
+            $scope.showDetails = function (details) {
+                $scope.selectedDetails = details;
+                $('#detailsModal').modal('show'); 
+            }
+        })
+    </script>
+</head>
+<body ng-app="myModule" ng-controller="myController" ng-init="doFetchAll();">
+    <div class="container  mt-2">
+        <div class="row">
+            <div class="col-md-12">
+                <center>
+                    <h2>
+                        ALL RECORDS
+                    </h2>
+                </center>
+            </div>
+            <div class="col-md-4 mr-1 mt-3 mb-3" ng-repeat="obj in jsonRecordsAry">
+                <div class="card mb-3" style="width: 350px; height: 350px; background-size: contain; margin-bottom: 20px;">
+                    <img ng-src="uploads/{{obj.idpic}}" class="card-img-top" style="height: 10rem; background-size: contain;" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{obj.email}}</h5>
+                        <p class="card-text">Name: {{obj.fname}}</p>
+                        <p class="card-text">Service:{{obj.service}}</p>
+                        <a href="#" class="btn btn-primary" ng-click="showDetails(obj)">Show All Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="detailsModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Full Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Name: {{selectedDetails.fname}}</p>
+                    <p>Service: {{selectedDetails.service}}</p>
+                    <p>Sub Service: {{selectedDetails.subservice}}</p>
+                    <p>Contact: {{selectedDetails.contact}}</p>
+                    <p>Firm: {{selectedDetails.firm}}</p>
+                    <p>Website: {{selectedDetails.website}}</p>
+                    <p>Since: {{selectedDetails.since}}</p>
+                    <p>ID: {{selectedDetails.id}}</p>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

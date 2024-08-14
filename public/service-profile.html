@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+          </script>
+
+    <script>
+        function dofill(combo, typesLst) {
+            var gardeningServices = [
+                "Lawn maintenance",
+                "Tree trimming",
+                "Garden design and planting",
+            ];
+            var electricalServices = [
+                "Wiring and rewiring",
+                "Electrical repairs",
+                "Installation of lighting fixtures",
+            ];
+            var homeCleaningServices = [
+                "General cleaning",
+                "Deep cleaning",
+                "Laundry services",
+            ];
+            var paintingServices = [
+                "Interior painting",
+                "Exterior painting",
+                "Wall mural painting",
+            ];
+            var handymanServices = [
+                "Small repairs",
+                "Furniture assembly",
+                "Installation of shelves",
+            ];
+            var pestControlServices = [
+                "Insect control",
+                "Rodent control",
+                "Termite treatment",
+            ];
+            var roofingServices = [
+                "Roof repair",
+                "Roof replacement",
+                "Gutter cleaning",
+            ];
+            var interiorDesignServices = [
+                "Room decor consultation",
+                "Furniture arrangement",
+                "Color scheme recommendations",
+            ];
+            var carServices = ["Car detailing", "Oil change", "Minor car repairs"];
+            var cateringServices = [
+                "Meal preparation",
+                "Catering for events",
+                "Specialized cuisine",
+            ];
+            var fitnessEquipmentServices = ["Treadmill assembly", "Home gym setup"];
+            var maidServices = [
+                "General cleaning",
+                "Deep cleaning",
+                "Laundry services",
+            ];
+
+            let indx = combo.selectedIndex;
+            typesLst.length = 1;
+
+            if (indx == 1) {
+                for (let i = 0; i < maidServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = maidServices[i];
+                    opt.text = maidServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 2) {
+                for (let i = 0; i < gardeningServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = gardeningServices[i];
+                    opt.text = gardeningServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 3) {
+                for (let i = 0; i < homeCleaningServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = homeCleaningServices[i];
+                    opt.text = homeCleaningServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 4) {
+                for (let i = 0; i < paintingServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = paintingServices[i];
+                    opt.text = paintingServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 5) {
+                for (let i = 0; i < handymanServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = handymanServices[i];
+                    opt.text = handymanServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 6) {
+                for (let i = 0; i < pestControlServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = pestControlServices[i];
+                    opt.text = pestControlServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 7) {
+                for (let i = 0; i < roofingServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = roofingServices[i];
+                    opt.text = roofingServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 8) {
+                for (let i = 0; i < interiorDesignServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = interiorDesignServices[i];
+                    opt.text = interiorDesignServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 9) {
+                for (let i = 0; i < carServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = carServices[i];
+                    opt.text = carServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 10) {
+                for (let i = 0; i < cateringServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = cateringServices[i];
+                    opt.text = cateringServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 11) {
+                for (let i = 0; i < fitnessEquipmentServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = fitnessEquipmentServices[i];
+                    opt.text = fitnessEquipmentServices[i];
+                    typesLst.append(opt);
+                }
+            }
+        }
+    </script>
+
+    <script>
+        function doShowPrev(refFile, refImg) {
+            const [file] = refFile.files
+            if (file) {
+                refImg.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
+
+<!-- ///////////////////////////////////////////////search////////////////////////////////////////////////////////////////////////// -->
+
+<script>
+    $(document).ready(function () {
+      $("#searchbtn").click(function () {
+        let obj = {
+          url: "/searchservice",
+          data: {
+            email: $("#email").val(),
+          },
+        };
+
+        $.ajax(obj).done(function (ary) {
+
+          $("#name").val(ary[0].fname);
+          $("#cont").val(ary[0].contact);
+          $("#since").val(ary[0].since);
+          $("#sc").val(ary[0].service);
+          $("#stc").val(ary[0].subservice);
+          $("#adrs").val(ary[0].firm);
+          $("#web").val(ary[0].website);
+          $("#id").val(ary[0].id);
+          $("#sp").val(ary[0].special);
+          $("#prev").prop("src", "uploads/" + ary[0].idpic);
+
+          $("#hdn").val(ary[0].idpic); //pic name stored in hidden field
+          alert(ary[0].idpic);
+        })
+          .fail(function (err) {
+            alert("Error=" + err);
+          });
+      })
+
+
+
+    })
+  </script>
+</head>
+
+
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <div class="container mt-3 mb-3 d-flex justify-content-center"
+        style="margin-top: 10%; width: 60%; background-color: rgb(224, 242, 255); ">
+
+        <form class="row g-3 needs-validation" id="profileForm" action="/saveservice" method="post" enctype="multipart/form-data" novalidate>
+
+            <input type="hidden" id="hdn" name="hdn">
+            <input type="hidden" id="hdn" name="hdn">
+            <div class="container mt-3 d-flex justify-content-center">
+                <center>
+                    <h3>SERVICE PROVIDER PROFILE</h3>
+                </center>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="cont" class="form-label">Contact No</label>
+                    <input type="text" class="form-control" id="cont" name="cont" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-end">
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email Id</label>
+                    <div class="input-group has-validation">
+
+                        <input type="text" class="form-control" id="email" name="email"
+                            aria-describedby="inputGroupPrepend" required>
+
+                        <div class="invalid-feedback">
+                            Please choose a Email Id.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="button" id="searchbtn" class="btn btn-primary">Search</button>
+                </div>
+                <div class="col-md-3">
+                    <label for="since" class="form-label">Since</label>
+                    <input type="text" class="form-control" id="since" name="since" maxlength="4" minlength="4">
+                </div>
+            </div>
+
+
+            <div class="row mt-3 mb-3">
+                <div class="col-md-6">
+                    <label for="sc" class="form-label">Select a Service Category:</label>
+                    <select class="form-select form-select-lg bg-light fs-6" name="sc" id="sc"
+                        onchange="dofill(this, stc);" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option value="maid">Maid Services</option>
+                        <option value="gardening">
+                            Gardening/Landscaping Services
+                        </option>
+                        <option value="electrical">Electrical Services</option>
+                        <option value="cleaning">Home Cleaning Services</option>
+
+                        <option value="painting">Painting Services</option>
+                        <option value="handyman">Handyman Services</option>
+                        <option value="pestcontrol">
+                            Pest Control Services
+                        </option>
+                        <option value="roofing">Roofing Services</option>
+                        <option value="interiordesign">
+                            Interior Design Services
+                        </option>
+                        <option value="car">Car Services</option>
+
+                        <option value="catering">Catering Services</option>
+
+                        <option value="fitnessequipment">
+                            Fitness Equipment Installation
+                        </option>
+                    </select>
+                </div>
+
+
+
+                <div class="col-md-6">
+                    <label for="adrs" class="form-label">Firm Address(if-any)</label>
+                    <input type="text" class="form-control" id="adrs" name="adrs" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid city.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ----------------------------sub task category-------------------------------------- -->
+
+            <div class="row mt-3 mb-3">
+                <div class="col-md-6">
+                    <label for="stc" class="form-label">Select a Sub Service Category:</label>
+                    <select name="stc" id="stc" class="form-select form-select-lg bg-light fs-6">
+                        <option value="none" selected disabled>
+                            Choose......
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="web" class="form-label">Website(if-any)</label>
+                    <input type="text" class="form-control " id="web" name="web" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid city.
+                    </div>
+                </div>
+
+
+            </div>
+
+<div class="row align-items-center">
+    <div class="col-md-3">
+        ID Proof:
+        <input type="text" id="id" name="id" maxlength="12" minlength="12">  
+    </div>
+            <div class="col-md-9">
+                
+                    <label for="ppic" class="form-label">ID Pic:</label>
+                     <input type="file" name="ppic" id="ppic" onchange="doShowPrev(this,prev);">
+                    <img src="" alt="" id="prev" width="100" height="100" >
+                
+            </div>
+</div>
+
+                <div class="col-md-6">
+                    Specialization:
+                    <textarea name="sp" id="sp" cols="50" rows="5"></textarea>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="checked" name="check">
+                    <label class="form-check-label" for="Check">
+                        Agree to terms and conditions
+                    </label>
+
+                </div>
+                <center>
+                    <div>
+                        <input type="submit" id="upbtn" class="btn btn-primary" value="Edit My Info" formaction="/updateservice">
+                        <input type="submit" id="upbtn" class="btn btn-primary" value="Upload Data">
+                    </div>
+
+                </center>
+
+            
+
+        </form>
+    </div>
+</body>
+
+</html>

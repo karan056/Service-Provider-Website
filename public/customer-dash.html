@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+        </script>
+
+<style>
+    .ok {
+      color: green;
+    }
+
+    .not-ok {
+      color: red;
+    }
+  </style>
+
+
+    <script>
+        function dofill(combo, typesLst) {
+            var gardeningServices = [
+                "Lawn maintenance",
+                "Tree trimming",
+                "Garden design and planting",
+            ];
+            var electricalServices = [
+                "Wiring and rewiring",
+                "Electrical repairs",
+                "Installation of lighting fixtures",
+            ];
+            var homeCleaningServices = [
+                "General cleaning",
+                "Deep cleaning",
+                "Laundry services",
+            ];
+            var paintingServices = [
+                "Interior painting",
+                "Exterior painting",
+                "Wall mural painting",
+            ];
+            var handymanServices = [
+                "Small repairs",
+                "Furniture assembly",
+                "Installation of shelves",
+            ];
+            var pestControlServices = [
+                "Insect control",
+                "Rodent control",
+                "Termite treatment",
+            ];
+            var roofingServices = [
+                "Roof repair",
+                "Roof replacement",
+                "Gutter cleaning",
+            ];
+            var interiorDesignServices = [
+                "Room decor consultation",
+                "Furniture arrangement",
+                "Color scheme recommendations",
+            ];
+            var carServices = ["Car detailing", "Oil change", "Minor car repairs"];
+            var cateringServices = [
+                "Meal preparation",
+                "Catering for events",
+                "Specialized cuisine",
+            ];
+            var fitnessEquipmentServices = ["Treadmill assembly", "Home gym setup"];
+            var maidServices = [
+                "General cleaning",
+                "Deep cleaning",
+                "Laundry services",
+            ];
+
+            let indx = combo.selectedIndex;
+            typesLst.length = 1;
+
+            if (indx == 1) {
+                for (let i = 0; i < maidServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = maidServices[i];
+                    opt.text = maidServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 2) {
+                for (let i = 0; i < gardeningServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = gardeningServices[i];
+                    opt.text = gardeningServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 3) {
+                for (let i = 0; i < homeCleaningServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = homeCleaningServices[i];
+                    opt.text = homeCleaningServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 4) {
+                for (let i = 0; i < paintingServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = paintingServices[i];
+                    opt.text = paintingServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 5) {
+                for (let i = 0; i < handymanServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = handymanServices[i];
+                    opt.text = handymanServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 6) {
+                for (let i = 0; i < pestControlServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = pestControlServices[i];
+                    opt.text = pestControlServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 7) {
+                for (let i = 0; i < roofingServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = roofingServices[i];
+                    opt.text = roofingServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 8) {
+                for (let i = 0; i < interiorDesignServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = interiorDesignServices[i];
+                    opt.text = interiorDesignServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 9) {
+                for (let i = 0; i < carServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = carServices[i];
+                    opt.text = carServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 10) {
+                for (let i = 0; i < cateringServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = cateringServices[i];
+                    opt.text = cateringServices[i];
+                    typesLst.append(opt);
+                }
+            } else if (indx == 11) {
+                for (let i = 0; i < fitnessEquipmentServices.length; i++) {
+                    let opt = document.createElement("option");
+                    opt.value = fitnessEquipmentServices[i];
+                    opt.text = fitnessEquipmentServices[i];
+                    typesLst.append(opt);
+                }
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#othloc").click(function () {
+                // alert($(this).val());
+                if ($(this).val()==="othloc") {
+                    $("#ad").prop("disabled", false);
+                    $("#state").prop("disabled", false);
+                    $("#city").prop("disabled", false);
+
+                    $("#ad").val("");
+                    $("#state").val("");
+                    $("#city").val("");
+                }
+            });
+
+            $("#home").click(function () {
+                if ($(this).val()==="Home") {
+                    
+                    $("#ad").prop("disabled", true);
+                    $("#state").prop("disabled", true);
+                    $("#city").prop("disabled", true);
+
+                    let obj = {
+                        url: "/getadd",
+                        data: {
+                            email: $("#postemail").val(),
+                        },
+                    };
+                    $.ajax(obj).done(function (arry) {
+                        
+                            $("#ad").val(arry[0].address);
+                            $("#state").val(arry[0].state);
+                            $("#city").val(arry[0].city);
+                        
+                    })
+                        .fail(function (err) {
+                            alert("Error=" + err);
+                        });
+                }
+            });
+
+            $("#postbtn").click(function () {
+            
+
+        let email = $("#postemail").val();
+        
+        let sc = $("select[name='sc']").val();
+        let stc = $("select[name='stc']").val();
+        let ad = $("#ad").val();
+        let state = $("#state").val();
+        let city = $("#city").val();
+        let date = $("#date").val();
+        let td = $("#td").val();
+
+
+        let obj = {
+          url: "/postjob",
+          method: "POST",
+          data: {postemail: email, sc: sc, stc: stc, ad: ad, state: state, city: city, date: date, td: td },
+        };
+
+        $.ajax(obj)
+          .done(function (resp) {
+            $("#posterr").html(resp).addClass("ok").removeClass("not-ok");
+          })
+          .fail(function (err) {
+            alert("Error=" + err);
+          });
+      });
+
+      $("#postemail").blur(function () {
+        let obj = {
+
+          url: "/check-pemail",
+          data: {
+            pemail: $("#postemail").val(),
+
+          }
+        }
+
+        $.ajax(obj).done(
+          function (resp) {
+
+            $("#errpemail").html(resp);
+            if (resp === "Email already exists")
+              $("#errpemail").removeClass("ok").addClass("not-ok");
+            else
+              $("#errpemail").addClass("ok").removeClass("not-ok");
+
+          }).fail(
+            function (err) {
+              alert("Error=" + err);
+            });
+      });
+
+        });
+    </script>
+
+
+</head>
+
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <div class="container mb-3 mt-3 d-flex justify-content-center">
+        <div class="row">
+
+            <div class="card mb-3 me-3" style="width: 15rem;">
+                <img src="/pic/images.jpg" class="card-img-top" style="height: 13rem; background-size: contain;"
+                    alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">PROFILE</h5>
+                    <p class="card-text"></p>
+                    <a href="/service-profile.html" class="btn btn-primary">Go </a>
+                </div>
+            </div>
+
+            <div class="card mb-3 me-3" style="width: 15rem;">
+                <img src="/pic/download.jpg" class="card-img-top" style="height: 13rem; background-size: contain;"
+                    alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Post jobs</h5>
+                    <p class="card-text"></p>
+                    <a href="#" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#postModal">Go</a>
+                </div>
+            </div>
+
+            <div class="card mb-3 me-3" style="width: 15rem;">
+                <img src="/pic/pics job m.png" class="card-img-top" style="height: 13rem; background-size: contain;"
+                    alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"> Job Management</h5>
+                    <p class="card-text"></p>
+                    <a href="#" class="btn btn-primary">Go</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 15rem;">
+                    <img src="/pic/images.png" class="card-img-top" style="height: 13rem; background-size: contain;"
+                        alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"> Search Service Provider</h5>
+                        <p class="card-text"></p>
+                        <a href="/service-provider.html" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card" style="width: 15rem;">
+                    <img src="/pic/download.png" class="card-img-top" style="height: 14rem; background-size: contain;"
+                        alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"> Settings</h5>
+                        <p class="card-text"></p>
+                        <a href="#" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#settingModal">Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------------------------------setting modal---------------------------- -->
+    <div class="modal fade" id="settingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: lightcyan">
+                <div class="modal-header" >
+                    <h1 class="Settings-Modal fs-5" id="exampleModalLabel">Settings-Modal</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form>
+                    <div class="modal-body" >
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="login-email" placeholder="name@example.com"
+                                name="login-email">
+                            <label for="login-email">Email address</label>
+                            <span id="errEmaill">*</span>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="loginOLDPassword" placeholder="Password"
+                                name="loginOLDPassword">
+                            <label for="loginOLDPassword">OLD Password</label>
+                            <br>
+                            <div class="form-floating mb-3">
+                                <input type="password" style="margin-bottom: 5%;" class="form-control"
+                                    id="loginNEWPassword" placeholder="Password" name="loginNEWPassword">
+                                <label for="loginNEWPassword">NEW Password</label>
+                                <center>
+                                    <input type="button" id="login-btn" class="btn" value="Update"
+                                        style="background-color: #213c53; color: lightblue">
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------------------------------------- post job modal----------------------------------------------------------------------------- -->
+    <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: lightcyan">
+                <div class="modal-header">
+                    <h1 class="Post Requirement-Modal fs-5" id="exampleModalLabel">Post Requirement-Modal</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="form-floating ">
+                            <input type="email" class="form-control" id="postemail" placeholder="name@example.com"
+                                name="postemail">
+                            <label for="postemail">Email address</label>
+                            <span id="errpemail">*</span>
+                        </div>
+
+                        <div class="row mt-3 mb-3">
+                            <div class="col">
+                                <label for="sc" class="form-label">Select a Service Category:</label>
+                                <select class="form-select form-select-lg bg-light fs-6" name="sc" id="sc"
+                                    onchange="dofill(this, stc);" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    <option value="maid">Maid Services</option>
+                                    <option value="gardening">
+                                        Gardening/Landscaping Services
+                                    </option>
+                                    <option value="electrical">Electrical Services</option>
+                                    <option value="cleaning">Home Cleaning Services</option>
+
+                                    <option value="painting">Painting Services</option>
+                                    <option value="handyman">Handyman Services</option>
+                                    <option value="pestcontrol">
+                                        Pest Control Services
+                                    </option>
+                                    <option value="roofing">Roofing Services</option>
+                                    <option value="interiordesign">
+                                        Interior Design Services
+                                    </option>
+                                    <option value="car">Car Services</option>
+
+                                    <option value="catering">Catering Services</option>
+
+                                    <option value="fitnessequipment">
+                                        Fitness Equipment Installation
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- ----------------------------sub task category-------------------------------------- -->
+
+                        <div class="row mt-3 mb-3">
+                            <div class="col">
+                                <label for="stc" class="form-label">Select a Sub Service Category:</label>
+                                <select name="stc" id="stc" class="form-select form-select-lg bg-light fs-6">
+                                    <option value="none" selected>
+                                        Choose......
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <p>
+
+                        <div class="form-floating">
+                            <input type="radio" value="Home" name="rad" id="home">Home
+                            <input type="radio" value="othloc" name="rad" id="othloc">Other Location
+                        </div>
+                        </p>
+                        <p>
+                        <div class="form-floating">
+                            <div class="col-md-12">
+                                <label for="ad" class="form-label">
+                                    <h6>Address</h6>
+                                </label>
+                                <input type="text" class="form-control" id="ad" name="ad" disabled required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid city.
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <label for="state" class="form-label">State</label>
+                            <select class="form-select" id="state" name="state" disabled required>
+                                <option selected disabled value="">Choose...</option>
+
+
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and
+                                    Daman and Diu</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Puducherry">Puducherry</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a valid state.
+                            </div>
+                        </div>
+                        </p>
+                        <p>
+                        <div class="form-floating">
+                            <div class="col-md-5">
+                                <label for="city" class="form-label">
+                                    <h6>City</h6>
+                                </label>
+                                <input type="text" class="form-control" id="city" name="city" disabled required>
+
+                            </div>
+                        </div>
+                        </p>
+                        <p>
+                        <div class="form-floating">
+                            <p>
+                            <h6>Up To</h6>
+                            </p>
+                            <div class="col-md-4">
+                                <input type="date" class="form-control" id="date" name="date" value="" required>
+                            </div>
+                        </div>
+                        </p>
+
+                        <p>
+                        <div class="form-floating">
+                            <h6>What Work To Be Done?</h6>
+                            <textarea name="td" id="td" cols="50" rows="5"></textarea>
+                        </div>
+                        </p>
+                        <div class="form-floating">
+                            <center>
+                                <input type="button" id="postbtn" class="btn" value="Post Job"
+                                    style="background-color: #213c53; color: #fbedd7">
+                                    <span id="posterr">*</span>
+
+                            </center>
+
+                        </div>
+                    </div>
+
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
